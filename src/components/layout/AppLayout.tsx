@@ -1,4 +1,11 @@
 
+import { NavLink } from "react-router-dom";
+import { 
+  Calendar, BarChart3, CheckSquare, Layout, 
+  MessageSquare, Users, Settings
+} from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/layout/ModeToggle";
 import {
   Sidebar,
   SidebarContent,
@@ -7,23 +14,16 @@ import {
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
-import {
-  Calendar,
-  BarChart3,
-  CheckSquare,
-  Layout,
-  MessageSquare,
-  Users,
-  Settings,
-} from "lucide-react";
-import { NavLink } from "react-router-dom";
-import { cn } from "@/lib/utils";
 
+// Navigation items
 const navItems = [
   { icon: Layout, name: "Dashboard", path: "/" },
   { icon: Calendar, name: "Calendar", path: "/calendar" },
@@ -33,7 +33,8 @@ const navItems = [
   { icon: BarChart3, name: "AI Analytics", path: "/ai-analytics" }
 ];
 
-export function AppSidebar() {
+// AppSidebar Component
+function AppSidebar() {
   // NavLink wrapper to work with react-router and sidebar
   const NavLinkWrapper = ({ to, children, className }: { to: string; children: React.ReactNode; className?: string }) => (
     <NavLink
@@ -90,5 +91,30 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarFooter>
     </Sidebar>
+  );
+}
+
+// Main Layout Component
+interface LayoutProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export function AppLayout({ children, className }: LayoutProps) {
+  return (
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full">
+        <AppSidebar />
+        <SidebarInset className="flex-1 p-0">
+          <header className="h-16 border-b border-border flex items-center justify-end p-4 sticky top-0 bg-background z-10">
+            <SidebarTrigger className="mr-auto" />
+            <ModeToggle />
+          </header>
+          <main className={cn("p-6", className)}>
+            {children}
+          </main>
+        </SidebarInset>
+      </div>
+    </SidebarProvider>
   );
 }

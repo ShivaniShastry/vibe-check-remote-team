@@ -4,7 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Layout } from "@/components/layout/Layout";
+import { AppLayout } from "@/components/layout/AppLayout";
 import Index from "./pages/Index";
 import Calendar from "./pages/Calendar";
 import Tasks from "./pages/Tasks";
@@ -22,13 +22,13 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          <Route path="/calendar" element={<Layout><Calendar /></Layout>} />
-          <Route path="/tasks" element={<Layout><Tasks /></Layout>} />
-          <Route path="/surveys" element={<Layout><Surveys /></Layout>} />
-          <Route path="/team" element={<Layout><Team /></Layout>} />
-          <Route path="/ai-analytics" element={<Layout><AIAnalytics /></Layout>} />
-          <Route path="*" element={<Layout><NotFound /></Layout>} />
+          <Route path="/" element={<AppLayout><Index /></AppLayout>} />
+          <Route path="/calendar" element={<AppLayout><Calendar /></AppLayout>} />
+          <Route path="/tasks" element={<AppLayout><Tasks /></AppLayout>} />
+          <Route path="/surveys" element={<AppLayout><Surveys /></AppLayout>} />
+          <Route path="/team" element={<AppLayout><Team /></AppLayout>} />
+          <Route path="/ai-analytics" element={<AppLayout><AIAnalytics /></AppLayout>} />
+          <Route path="*" element={<AppLayout><NotFound /></AppLayout>} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
