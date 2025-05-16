@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { cn } from "@/lib/utils";
+import type { DayContentProps } from "react-day-picker";
 
 export const MiniCalendar = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -43,7 +44,7 @@ export const MiniCalendar = () => {
           selected: "bg-primary text-primary-foreground",
           today: "bg-accent text-accent-foreground",
         }}
-        modifierStyles={{
+        modifiersStyles={{
           event: {
             backgroundColor: "rgba(156, 163, 175, 0.2)",
             borderRadius: "50%"
@@ -53,13 +54,13 @@ export const MiniCalendar = () => {
           event: (date) => hasEvent(date),
         }}
         components={{
-          DayContent: ({ date, view }) => (
+          DayContent: ({ date, displayMonth }: DayContentProps) => (
             <div className={cn(
               "relative flex h-full w-full items-center justify-center",
-              hasEvent(date) && !view.outside && "relative"
+              hasEvent(date) && displayMonth && "relative"
             )}>
               <span>{date.getDate()}</span>
-              {hasEvent(date) && !view.outside && (
+              {hasEvent(date) && displayMonth && (
                 <span className="absolute bottom-1 w-1 h-1 rounded-full bg-primary" />
               )}
             </div>

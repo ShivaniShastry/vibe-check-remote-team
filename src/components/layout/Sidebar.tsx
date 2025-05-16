@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   Calendar,
   BarChart3,
@@ -28,6 +28,18 @@ const navItems = [
 export const Sidebar = () => {
   const isMobile = useIsMobile();
   const [isOpen, setIsOpen] = useState(!isMobile);
+
+  // Use anchor tags as a fallback when not in a router context
+  const NavLinkOrAnchor = ({ to, className, children }: { to: string; className?: string; children: React.ReactNode }) => {
+    return (
+      <NavLink
+        to={to}
+        className={(navData) => cn(className, navData.isActive ? "bg-sidebar-accent" : "")}
+      >
+        {children}
+      </NavLink>
+    );
+  };
 
   return (
     <>
@@ -65,7 +77,7 @@ export const Sidebar = () => {
 
         <nav className="flex-1 px-3 py-4 space-y-1">
           {navItems.map((item) => (
-            <Link
+            <NavLinkOrAnchor
               key={item.name}
               to={item.path}
               className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-sidebar-accent transition-colors group"
@@ -85,12 +97,12 @@ export const Sidebar = () => {
                   {item.name}
                 </div>
               )}
-            </Link>
+            </NavLinkOrAnchor>
           ))}
         </nav>
 
         <div className="p-4 border-t border-border">
-          <Link
+          <NavLinkOrAnchor
             to="/settings"
             className="flex items-center px-3 py-2 text-sm rounded-md hover:bg-sidebar-accent transition-colors"
           >
@@ -104,7 +116,7 @@ export const Sidebar = () => {
             )}>
               Settings
             </span>
-          </Link>
+          </NavLinkOrAnchor>
         </div>
       </div>
     </>
