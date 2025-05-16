@@ -1,8 +1,42 @@
+
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio"
+import * as SeparatorPrimitive from "@radix-ui/react-separator"
 import { GripVertical } from "lucide-react"
 import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "@/lib/utils"
 
+// AspectRatio Component
+const AspectRatio = AspectRatioPrimitive.Root
+
+// Separator Component
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>
+>(
+  (
+    { className, orientation = "horizontal", decorative = true, ...props },
+    ref
+  ) => (
+    <SeparatorPrimitive.Root
+      ref={ref}
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "shrink-0 bg-border",
+        orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+        className
+      )}
+      {...props}
+    />
+  )
+)
+Separator.displayName = SeparatorPrimitive.Root.displayName
+
+// Resizable Components
 const ResizablePanelGroup = ({
   className,
   ...props
@@ -40,4 +74,10 @@ const ResizableHandle = ({
   </ResizablePrimitive.PanelResizeHandle>
 )
 
-export { ResizablePanelGroup, ResizablePanel, ResizableHandle }
+export {
+  AspectRatio,
+  Separator,
+  ResizablePanelGroup,
+  ResizablePanel,
+  ResizableHandle
+}

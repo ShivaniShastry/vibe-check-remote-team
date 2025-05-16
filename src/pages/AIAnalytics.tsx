@@ -1,23 +1,25 @@
 
-import { Layout } from "@/components/layout/Layout";
+import React from 'react';
+import { AppLayout } from '@/components/layout/AppLayout';
 
-const AIAnalytics = () => {
+function AIAnalytics() {
   return (
-    <Layout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">AI Analytics</h1>
-          <p className="text-muted-foreground">
-            View AI-powered insights about your team's engagement
-          </p>
-        </div>
-        
-        <div className="p-12 border border-dashed rounded-lg flex items-center justify-center">
-          <p className="text-muted-foreground">Full AI Analytics View Coming Soon</p>
+    <div className="space-y-6">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-3xl font-bold tracking-tight">AI Analytics</h2>
+        <p className="text-muted-foreground">
+          View insights and performance metrics for your remote team using AI-powered analytics.
+        </p>
+      </div>
+      <div className="grid gap-6">
+        {/* Content for AI Analytics page */}
+        <div className="border rounded-lg p-6">
+          <h3 className="text-lg font-medium mb-4">AI Analytics Dashboard</h3>
+          <p>This feature is coming soon. Check back for updates!</p>
         </div>
       </div>
-    </Layout>
+    </div>
   );
-};
+}
 
 export default AIAnalytics;

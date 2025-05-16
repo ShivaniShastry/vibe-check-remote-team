@@ -1,23 +1,25 @@
 
-import { Layout } from "@/components/layout/Layout";
+import React from 'react';
+import { AppLayout } from '@/components/layout/AppLayout';
 
-const Tasks = () => {
+function Tasks() {
   return (
-    <Layout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Tasks</h1>
-          <p className="text-muted-foreground">
-            Manage your team tasks and deliverables
-          </p>
-        </div>
-        
-        <div className="p-12 border border-dashed rounded-lg flex items-center justify-center">
-          <p className="text-muted-foreground">Full Tasks View Coming Soon</p>
+    <div className="space-y-6">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-3xl font-bold tracking-tight">Tasks</h2>
+        <p className="text-muted-foreground">
+          Manage and track tasks for your remote team.
+        </p>
+      </div>
+      <div className="grid gap-6">
+        {/* Content for Tasks page */}
+        <div className="border rounded-lg p-6">
+          <h3 className="text-lg font-medium mb-4">Your Tasks</h3>
+          <p>This feature is coming soon. Check back for updates!</p>
         </div>
       </div>
-    </Layout>
+    </div>
   );
-};
+}
 
 export default Tasks;
