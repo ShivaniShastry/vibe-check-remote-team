@@ -35,7 +35,7 @@ const navItems = [
 
 export function AppSidebar() {
   // NavLink wrapper to work with react-router and sidebar
-  const NavLinkWrapper = ({ to, children, className }) => (
+  const NavLinkWrapper = ({ to, children, className }: { to: string; children: React.ReactNode; className?: string }) => (
     <NavLink
       to={to}
       className={({ isActive }) => 

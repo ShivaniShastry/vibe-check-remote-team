@@ -14,12 +14,12 @@ export const Layout = ({ children, className }: LayoutProps) => {
     <SidebarProvider>
       <div className="flex min-h-screen w-full">
         <AppSidebar />
-        <SidebarInset className="px-4">
+        <SidebarInset className="flex-1 p-0">
           <header className="h-16 border-b border-border flex items-center justify-end p-4 sticky top-0 bg-background z-10">
             <SidebarTrigger className="mr-auto" />
             <ModeToggle />
           </header>
-          <main className={cn("px-4 py-6", className)}>
+          <main className={cn("p-6", className)}>
             {children}
           </main>
         </SidebarInset>
