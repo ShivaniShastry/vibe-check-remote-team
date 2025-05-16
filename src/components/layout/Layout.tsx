@@ -1,5 +1,6 @@
 
-import { Sidebar } from "@/components/layout/Sidebar";
+import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/layout/AppSidebar";
 import { ModeToggle } from "@/components/layout/ModeToggle";
 import { cn } from "@/lib/utils";
 
@@ -10,16 +11,19 @@ interface LayoutProps {
 
 export const Layout = ({ children, className }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-background">
-      <Sidebar />
-      <div className="md:pl-20 pt-16 md:pt-0">
-        <header className="fixed top-0 right-0 left-0 md:left-20 z-30 h-16 bg-background/80 backdrop-blur-md border-b border-border flex items-center justify-end px-4">
-          <ModeToggle />
-        </header>
-        <main className={cn("px-4 md:px-8 py-6 md:py-8", className)}>
-          {children}
-        </main>
+    <SidebarProvider>
+      <div className="flex min-h-screen w-full">
+        <AppSidebar />
+        <SidebarInset className="px-4">
+          <header className="h-16 border-b border-border flex items-center justify-end p-4 sticky top-0 bg-background z-10">
+            <SidebarTrigger className="mr-auto" />
+            <ModeToggle />
+          </header>
+          <main className={cn("px-4 py-6", className)}>
+            {children}
+          </main>
+        </SidebarInset>
       </div>
-    </div>
+    </SidebarProvider>
   );
-};
+}
